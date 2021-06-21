@@ -164,7 +164,9 @@ func (s *handler) forwardServerToClient(src grpc.ServerStream, dst grpc.ClientSt
 		f := &codec.Frame{}
 		for i := 0; ; i++ {
 			if err := src.RecvMsg(f); err != nil {
-				modifier(f)
+				if modifier != nil {
+					modifier(f)
+				}
 				ret <- err // this can be io.EOF which is happy case
 				break
 			}

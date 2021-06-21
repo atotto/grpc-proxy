@@ -30,7 +30,7 @@ func ExampleRegisterService() {
 
 func ExampleTransparentHandler() {
 	grpc.NewServer(
-		grpc.UnknownServiceHandler(proxy.TransparentHandler(director)))
+		grpc.UnknownServiceHandler(proxy.TransparentHandler(director, nil, nil)))
 }
 
 // Provide sa simple example of a director that shields internal services and dials a staging or production backend.
